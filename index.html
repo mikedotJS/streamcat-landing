@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StreamCat: share your console, with sound</title>
+    <meta name="description" content="StreamCat shows the picture and sound from your capture card in a clean window you can share anywhere. For Mac and Windows." />
+    <meta name="theme-color" content="#e8e9ee" />
+    <link rel="icon" href="icon.png" />
+    <link rel="preload" href="fonts/bricolage-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+    <script>document.documentElement.classList.add('js')</script>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="i-apple-logo" viewBox="0 0 256 256"><path d="M219.4,167.84C201.71,155.69,198,135.12,198,120c0-18.42,13.86-34.29,22.12-42.12a6,6,0,0,0,0-8.71C208,57.7,187.07,50,168,50a70.23,70.23,0,0,0-40,12.55,69.6,69.6,0,0,0-89.31,8.08A72.63,72.63,0,0,0,18,123.35a125.11,125.11,0,0,0,39.53,88.33A37.85,37.85,0,0,0,83.6,222h87.7A37.83,37.83,0,0,0,199,210.07a122.6,122.6,0,0,0,17.54-24.2c6.55-12,5.77-13.75,5-15.48A6.07,6.07,0,0,0,219.4,167.84Zm-29.23,34A25.82,25.82,0,0,1,171.3,210H83.6A25.85,25.85,0,0,1,65.78,203,113.21,113.21,0,0,1,30,123a60.55,60.55,0,0,1,17.21-44A56.82,56.82,0,0,1,88,62h.81a57.35,57.35,0,0,1,35.44,12.71,6,6,0,0,0,7.5,0A57.39,57.39,0,0,1,168,62c13.89,0,28.81,4.68,39.11,12-9.44,10.14-21.1,26.59-21.1,46,0,23.78,7.81,42.6,22.66,54.77A107.33,107.33,0,0,1,190.17,201.89Zm-60-171.39A38,38,0,0,1,167,2h1a6,6,0,0,1,0,12h-1a26,26,0,0,0-25.18,19.5,6,6,0,1,1-11.62-3Z"/></symbol>
+      <symbol id="i-windows-logo" viewBox="0 0 256 256"><path d="M208,138H128a6,6,0,0,0-6,6v57.45a6,6,0,0,0,4.93,5.91l80,14.54a5.46,5.46,0,0,0,1.07.1,6,6,0,0,0,6-6V144A6,6,0,0,0,208,138Zm-6,70.81-68-12.36V150h68ZM96,138H32a6,6,0,0,0-6,6v40a6,6,0,0,0,4.93,5.9l64,11.64a6.36,6.36,0,0,0,1.07.1,6,6,0,0,0,6-6V144A6,6,0,0,0,96,138Zm-6,50.45L38,179V150H90ZM211.84,35.39a6,6,0,0,0-4.91-1.29l-80,14.54A6,6,0,0,0,122,54.55V112a6,6,0,0,0,6,6h80a6,6,0,0,0,6-6V40A6,6,0,0,0,211.84,35.39ZM202,106H134V59.55l68-12.36ZM99.84,55.76a6,6,0,0,0-4.91-1.3l-64,11.64A6,6,0,0,0,26,72v40a6,6,0,0,0,6,6H96a6,6,0,0,0,6-6V60.36A6,6,0,0,0,99.84,55.76ZM90,106H38V77l52-9.46Z"/></symbol>
+      <symbol id="i-download-simple" viewBox="0 0 256 256"><path d="M222,144v64a6,6,0,0,1-6,6H40a6,6,0,0,1-6-6V144a6,6,0,0,1,12,0v58H210V144a6,6,0,0,1,12,0Zm-98.24,4.24a6,6,0,0,0,8.48,0l40-40a6,6,0,0,0-8.48-8.48L134,129.51V32a6,6,0,0,0-12,0v97.51L92.24,99.76a6,6,0,0,0-8.48,8.48Z"/></symbol>
+      <symbol id="i-arrow-up-right" viewBox="0 0 256 256"><path d="M198,64V168a6,6,0,0,1-12,0V78.48L68.24,196.24a6,6,0,0,1-8.48-8.48L177.52,70H88a6,6,0,0,1,0-12H192A6,6,0,0,1,198,64Z"/></symbol>
+      <symbol id="i-speaker-high" viewBox="0 0 256 256"><path d="M154.64,26.61a6,6,0,0,0-6.32.65L77.94,82H32A14,14,0,0,0,18,96v64a14,14,0,0,0,14,14H77.94l70.38,54.74A6,6,0,0,0,158,224V32A6,6,0,0,0,154.64,26.61ZM30,160V96a2,2,0,0,1,2-2H74v68H32A2,2,0,0,1,30,160Zm116,51.73L86,165.07V90.93l60-46.66Zm50.53-108.85a38,38,0,0,1,0,50.24,6,6,0,1,1-9-7.94,26,26,0,0,0,0-34.37,6,6,0,0,1,9-7.93ZM246,128a77.86,77.86,0,0,1-19.86,52,6,6,0,1,1-8.94-8,66,66,0,0,0,0-88,6,6,0,1,1,8.94-8A77.86,77.86,0,0,1,246,128Z"/></symbol>
+      <symbol id="i-plugs-connected" viewBox="0 0 256 256"><path d="M236.24,19.76a6,6,0,0,0-8.48,0L173.94,73.57l-6.79-6.78a30,30,0,0,0-42.42,0L100,91.51l-7.76-7.75a6,6,0,0,0-8.48,8.48L91.51,100,66.79,124.73a30,30,0,0,0,0,42.42l6.78,6.79L19.76,227.76a6,6,0,1,0,8.48,8.48l53.82-53.81,6.79,6.78a30,30,0,0,0,42.42,0L156,164.49l7.76,7.75a6,6,0,0,0,8.48-8.48L164.49,156l24.72-24.73a30,30,0,0,0,0-42.42l-6.78-6.79,53.81-53.82A6,6,0,0,0,236.24,19.76Zm-113.45,161a18,18,0,0,1-25.46,0L75.27,158.67a18,18,0,0,1,0-25.46L100,108.49,147.51,156Zm57.94-57.94L156,147.51,108.49,100l24.72-24.73a18,18,0,0,1,25.46,0l22.06,22.06a18,18,0,0,1,0,25.46ZM90.43,34.23a6,6,0,0,1,11.14-4.46l8,20a6,6,0,1,1-11.14,4.46Zm-64,59.54a6,6,0,0,1,7.8-3.34l20,8a6,6,0,1,1-4.46,11.14l-20-8A6,6,0,0,1,26.43,93.77Zm203.14,68.46a6,6,0,0,1-7.8,3.34l-20-8a6,6,0,0,1,4.46-11.14l20,8A6,6,0,0,1,229.57,162.23Zm-64,59.54a6,6,0,1,1-11.14,4.46l-8-20a6,6,0,0,1,11.14-4.46Z"/></symbol>
+      <symbol id="i-sliders-horizontal" viewBox="0 0 256 256"><path d="M40,86H74.6a30,30,0,0,0,58.8,0H216a6,6,0,0,0,0-12H133.4a30,30,0,0,0-58.8,0H40a6,6,0,0,0,0,12Zm64-24A18,18,0,1,1,86,80,18,18,0,0,1,104,62ZM216,170H197.4a30,30,0,0,0-58.8,0H40a6,6,0,0,0,0,12h98.6a30,30,0,0,0,58.8,0H216a6,6,0,0,0,0-12Zm-48,24a18,18,0,1,1,18-18A18,18,0,0,1,168,194Z"/></symbol>
+      <symbol id="i-monitor-play" viewBox="0 0 256 256"><path d="M163.33,115l-48-32A6,6,0,0,0,106,88v64a6,6,0,0,0,9.33,5l48-32a6,6,0,0,0,0-10ZM118,140.79V99.21L149.18,120ZM208,42H48A22,22,0,0,0,26,64V176a22,22,0,0,0,22,22H208a22,22,0,0,0,22-22V64A22,22,0,0,0,208,42Zm10,134a10,10,0,0,1-10,10H48a10,10,0,0,1-10-10V64A10,10,0,0,1,48,54H208a10,10,0,0,1,10,10Zm-52,48a6,6,0,0,1-6,6H96a6,6,0,0,1,0-12h64A6,6,0,0,1,166,224Z"/></symbol>
+      <symbol id="i-arrow-clockwise" viewBox="0 0 256 256"><path d="M238,56v48a6,6,0,0,1-6,6H184a6,6,0,0,1,0-12h32.55l-30.38-27.8c-.06-.06-.12-.13-.19-.19a82,82,0,1,0-1.7,117.65,6,6,0,0,1,8.24,8.73A93.46,93.46,0,0,1,128,222h-1.28A94,94,0,1,1,194.37,61.4L226,90.35V56a6,6,0,1,1,12,0Z"/></symbol>
+      <symbol id="i-frame-corners" viewBox="0 0 256 256"><path d="M198,80v32a6,6,0,0,1-12,0V86H160a6,6,0,0,1,0-12h32A6,6,0,0,1,198,80ZM96,170H70V144a6,6,0,0,0-12,0v32a6,6,0,0,0,6,6H96a6,6,0,0,0,0-12ZM230,56V200a14,14,0,0,1-14,14H40a14,14,0,0,1-14-14V56A14,14,0,0,1,40,42H216A14,14,0,0,1,230,56Zm-12,0a2,2,0,0,0-2-2H40a2,2,0,0,0-2,2V200a2,2,0,0,0,2,2H216a2,2,0,0,0,2-2Z"/></symbol>
+      <symbol id="i-waveform" viewBox="0 0 256 256"><path d="M54,96v64a6,6,0,0,1-12,0V96a6,6,0,0,1,12,0ZM88,26a6,6,0,0,0-6,6V224a6,6,0,0,0,12,0V32A6,6,0,0,0,88,26Zm40,32a6,6,0,0,0-6,6V192a6,6,0,0,0,12,0V64A6,6,0,0,0,128,58Zm40,32a6,6,0,0,0-6,6v64a6,6,0,0,0,12,0V96A6,6,0,0,0,168,90Zm40-16a6,6,0,0,0-6,6v96a6,6,0,0,0,12,0V80A6,6,0,0,0,208,74Z"/></symbol>
+      <symbol id="i-check" viewBox="0 0 256 256"><path d="M228.24,76.24l-128,128a6,6,0,0,1-8.48,0l-56-56a6,6,0,0,1,8.48-8.48L96,191.51,219.76,67.76a6,6,0,0,1,8.48,8.48Z"/></symbol>
+      <symbol id="i-gear-six" viewBox="0 0 256 256"><path d="M128,82a46,46,0,1,0,46,46A46.06,46.06,0,0,0,128,82Zm0,80a34,34,0,1,1,34-34A34,34,0,0,1,128,162Zm108-54.4a6,6,0,0,0-2.92-4L202.64,86.22l-.42-.71L202.1,51.2A6,6,0,0,0,200,46.64a110.12,110.12,0,0,0-36.07-20.31,6,6,0,0,0-4.84.45L128.46,43.86h-1L96.91,26.76a6,6,0,0,0-4.86-.44A109.92,109.92,0,0,0,56,46.68a6,6,0,0,0-2.12,4.55l-.16,34.34c-.14.23-.28.47-.41.71L22.91,103.57A6,6,0,0,0,20,107.62a104.81,104.81,0,0,0,0,40.78,6,6,0,0,0,2.92,4l30.42,17.33.42.71.12,34.31A6,6,0,0,0,56,209.36a110.12,110.12,0,0,0,36.07,20.31,6,6,0,0,0,4.84-.45l30.61-17.08h1l30.56,17.1A6.09,6.09,0,0,0,162,230a5.83,5.83,0,0,0,1.93-.32,109.92,109.92,0,0,0,36-20.36,6,6,0,0,0,2.12-4.55l.16-34.34c.14-.23.28-.47.41-.71l30.42-17.29a6,6,0,0,0,2.92-4.05A104.81,104.81,0,0,0,236,107.6Zm-11.25,35.79L195.32,160.1a6.07,6.07,0,0,0-2.28,2.3c-.59,1-1.21,2.11-1.86,3.14a6,6,0,0,0-.91,3.16l-.16,33.21a98.15,98.15,0,0,1-27.52,15.53L133,200.88a6,6,0,0,0-2.93-.77h-.14c-1.24,0-2.5,0-3.74,0a6,6,0,0,0-3.07.76L93.45,217.43a98,98,0,0,1-27.56-15.49l-.12-33.17a6,6,0,0,0-.91-3.16c-.64-1-1.27-2.08-1.86-3.14a6,6,0,0,0-2.27-2.3L31.3,143.4a93,93,0,0,1,0-30.79L60.68,95.9A6.07,6.07,0,0,0,63,93.6c.59-1,1.21-2.11,1.86-3.14a6,6,0,0,0,.91-3.16l.16-33.21A98.15,98.15,0,0,1,93.41,38.56L123,55.12a5.81,5.81,0,0,0,3.07.76c1.24,0,2.5,0,3.74,0a6,6,0,0,0,3.07-.76l29.65-16.56a98,98,0,0,1,27.56,15.49l.12,33.17a6,6,0,0,0,.91,3.16c.64,1,1.27,2.08,1.86,3.14a6,6,0,0,0,2.27,2.3L224.7,112.6A93,93,0,0,1,224.73,143.39Z"/></symbol>
+    </svg>
+
+    <header class="nav" id="nav">
+      <a class="brand" href="#top"><img src="icon.png" alt="" />StreamCat</a>
+      <nav class="nav-links" aria-label="Navigation">
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#how-it-works" data-i18n="nav.how">How it works</a>
+        <a class="btn btn-small" href="#download"><span data-i18n="nav.download">Download</span><span class="btn-ico"><svg class="i"><use href="#i-download-simple"/></svg></span></a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Open menu" data-i18n-aria="menu.open" aria-expanded="false" aria-controls="overlay"><span></span><span></span></button>
+    </header>
+    <div class="overlay" id="overlay">
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#how-it-works" data-i18n="nav.how">How it works</a>
+      <a href="#download" data-i18n="nav.download">Download</a>
+    </div>
+
+    <main id="top">
+      <section class="hero">
+        <div class="wrap">
+          <div>
+            <h1>
+              <span class="line" style="--n:0"><span data-i18n="hero.l1">Share</span></span>
+              <span class="line" style="--n:1"><span data-i18n="hero.l2">your console,</span></span>
+              <span class="line" style="--n:2"><span data-i18n="hero.l3">with sound.</span></span>
+            </h1>
+            <p class="lede fade-in" style="--delay:0.6s" data-i18n="hero.lede">StreamCat shows the picture and sound from your capture card in a clean window. Share it like any other window, anywhere you want.</p>
+            <div class="cta-row fade-in" style="--delay:0.75s">
+              <a class="btn" href="#download"><span data-i18n="hero.mac">Download for Mac</span><span class="btn-ico"><svg class="i"><use href="#i-apple-logo"/></svg></span></a>
+              <a class="btn btn-light" href="#download"><span data-i18n="hero.win">For Windows</span><span class="btn-ico"><svg class="i"><use href="#i-windows-logo"/></svg></span></a>
+            </div>
+          </div>
+
+          <div class="stage stage-rise">
+            <div class="live-tag"><i><svg class="i"><use href="#i-waveform"/></svg></i><span data-i18n="hero.live">Live, sound on</span><b></b></div>
+            <div class="tray">
+              <div class="app" role="img" aria-label="StreamCat window showing a game, with its floating control bar" data-i18n-aria="hero.mock">
+                <div class="scene">
+                  <div class="sun"></div>
+                  <div class="ridge ridge-1"></div>
+                  <div class="ridge ridge-2"></div>
+                  <div class="ridge ridge-3"></div>
+                  <div class="hud-bar"></div>
+                  <div class="hud-map"></div>
+                  <div class="hud-count">24 / 90</div>
+                </div>
+                <div class="mini-dock" aria-hidden="true"><div><svg class="i"><use href="#i-speaker-high"/></svg><span class="track"></span><span class="bar"></span><svg class="i"><use href="#i-gear-six"/></svg></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <h2 data-i18n="features.title">What StreamCat changes for you</h2>
+            <p data-i18n="features.intro">No need to build a studio to show your game. Everything you need fits in a single window.</p>
+          </div>
+
+          <div class="bento">
+            <article class="card card-a shell reveal">
+              <div class="core">
+                <div class="mini-sheet" aria-hidden="true">
+                  <div><small data-i18n="sheet.resolution">Resolution</small><div class="seg"><span class="on">1080p</span><span>720p</span></div></div>
+                  <div><small data-i18n="sheet.fps">Frames per second</small><div class="seg"><span class="on">60</span><span>30</span></div></div>
+                </div>
+                <div>
+                  <h3 data-i18n="a.title">1080p picture at 60 frames per second</h3>
+                  <p data-i18n="a.text">Your game arrives as it appears on the console, smooth, without going through OBS.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="card card-b shell shell-ink reveal" style="--d:0.1s">
+              <div class="core core-dark">
+                <div class="meter" aria-hidden="true">
+                  <span style="--k:0;--h:.55"></span><span style="--k:1;--h:.9"></span><span style="--k:2;--h:.7"></span><span style="--k:3;--h:1"></span><span style="--k:4;--h:.45"></span><span style="--k:5;--h:.8"></span><span style="--k:6;--h:.6"></span><span style="--k:7;--h:.95"></span><span style="--k:8;--h:.5"></span>
+                </div>
+                <div>
+                  <h3 data-i18n="b.title">The console's sound, not the room's</h3>
+                  <p data-i18n="b.text">Stereo, with no noise reduction or automatic gain: the game's sound stays intact.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="card card-c shell reveal">
+              <div class="core">
+                <div class="mini-win" aria-hidden="true"><div class="mini-dock" aria-hidden="true"><div><svg class="i"><use href="#i-speaker-high"/></svg><span class="track"></span><span class="bar"></span><svg class="i"><use href="#i-gear-six"/></svg></div></div></div>
+                <div>
+                  <h3 data-i18n="c.title">A window with nothing around it</h3>
+                  <p data-i18n="c.text">No title bar. The controls fade out as soon as you stop moving the mouse, so others only see the game.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="card card-d shell reveal" style="--d:0.1s">
+              <div class="core">
+                <div class="flow" aria-hidden="true">
+                  <div style="--s:0" data-i18n="flow.s0">Capture unplugged</div>
+                  <div style="--s:1" data-i18n="flow.s1">Opening the capture</div>
+                  <div style="--s:2" data-i18n="flow.s2">The picture is back</div>
+                </div>
+                <div>
+                  <h3 data-i18n="d.title">It picks up on its own</h3>
+                  <p data-i18n="d.text">Unplug and replug the capture: StreamCat comes back to the picture without you touching anything. Your settings are remembered between launches.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works">
+        <div class="wrap steps-grid">
+          <h2 class="reveal" data-i18n="how.title">Three steps, and your console is shared</h2>
+          <ol>
+            <li class="reveal">
+              <div><h3 data-i18n="how.s1.title">Plug in and open</h3><p data-i18n="how.s1.text">Plug your capture card in over USB, start your console, then open StreamCat. The picture shows up on its own.</p></div>
+            </li>
+            <li class="reveal" style="--d:0.08s">
+              <div><h3 data-i18n="how.s2.title">Share the window</h3><p data-i18n="how.s2.text">In your screen-sharing tool (Discord, for example), pick the “StreamCat” window from the list.</p></div>
+            </li>
+            <li class="reveal" style="--d:0.16s">
+              <div><h3 data-i18n="how.s3.title">Keep the sound on</h3><p data-i18n="how.s3.text">Make sure sound sharing is on before you start. Others see and hear your game.</p></div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="download" id="download">
+        <div class="wrap">
+          <div class="download-panel reveal">
+            <h2 data-i18n="dl.title">Download StreamCat</h2>
+            <p class="lede" data-i18n="dl.lede">Pick your system, install it, and your first game is ready to share.</p>
+            <div class="platforms">
+              <article class="platform shell shell-dark">
+                <div class="core core-dark">
+                  <div class="os"><svg class="i"><use href="#i-apple-logo"/></svg><div><h3>macOS</h3><p data-i18n="dl.mac.sub">Apple and Intel chips</p></div></div>
+                  <div class="dl-row">
+                    <a class="btn" href="downloads/StreamCat-0.1.0-arm64.dmg" download><span data-i18n="dl.mac.arm">Apple chip</span><span class="btn-ico"><svg class="i"><use href="#i-download-simple"/></svg></span></a>
+                    <a class="btn" href="downloads/StreamCat-0.1.0.dmg" download>Intel<span class="btn-ico"><svg class="i"><use href="#i-download-simple"/></svg></span></a>
+                  </div>
+                </div>
+              </article>
+              <article class="platform shell shell-dark">
+                <div class="core core-dark">
+                  <div class="os"><svg class="i"><use href="#i-windows-logo"/></svg><div><h3>Windows</h3><p data-i18n="dl.win.sub">64-bit installer</p></div></div>
+                  <div class="dl-row">
+                    <a class="btn" href="downloads/StreamCat-Setup-0.1.0.exe" download><span data-i18n="dl.win.btn">Download the installer</span><span class="btn-ico"><svg class="i"><use href="#i-download-simple"/></svg></span></a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <a class="brand" href="#top"><img src="icon.png" alt="" />StreamCat</a>
+      </div>
+    </footer>
+
+    <script src="vendor/i18next.min.js"></script>
+    <script src="locales.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
